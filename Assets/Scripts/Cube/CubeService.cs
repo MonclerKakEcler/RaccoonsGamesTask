@@ -24,13 +24,13 @@ namespace RaccoonsGames.Cube
 
         public void RegisterCube(CubeView view)
         {
-            view.OnMergeTry += HandleMergeAttempt;
+            view.OnMergeTry += TryMergeCubes;
             OnAttemptUsed?.Invoke();
         }
 
-        private void HandleMergeAttempt(CubeView viewA, CubeView viewB, float speed)
+        private void TryMergeCubes(CubeView viewA, CubeView viewB, float speed)
         {
-            if (speed < 0.5f) return;
+            if (speed < 2f) return;
 
             var controllerA = _pool.GetController(viewA);
             var controllerB = _pool.GetController(viewB);
