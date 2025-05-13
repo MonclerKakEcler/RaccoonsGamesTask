@@ -30,7 +30,10 @@ namespace RaccoonsGames.Cube
 
         private void TryMergeCubes(CubeView viewA, CubeView viewB, float speed)
         {
-            if (speed < 2f) return;
+            if (speed < 2f)
+            {
+                return;
+            }
 
             var controllerA = _pool.GetController(viewA);
             var controllerB = _pool.GetController(viewB);
@@ -46,6 +49,7 @@ namespace RaccoonsGames.Cube
             int result = CalculateNewValue(valueA);
 
             remaining.SetValue(result);
+            remaining.PlayBounceEffect();
             toRemove.ResetImpulse();
             _pool.Release(toRemove.View);
 

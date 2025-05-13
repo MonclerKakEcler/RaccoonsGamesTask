@@ -10,6 +10,7 @@ namespace RaccoonsGames.Cube
         void SetValue(int newValue);
         void SetColor(Color color);
         void ResetImpulse();
+        void PlayBounceEffect();
     }
 
     public class CubeController : ICubeController
@@ -21,7 +22,7 @@ namespace RaccoonsGames.Cube
 
         private const float kMinPositionX = -2.4f;
         private const float kMaxPositionX = 2.4f;
-        private const float KMoveSpeed = 0.003f;
+        private const float KMoveSpeed = 0.005f;
         private const float kLaunchForce = 30f;
 
         private bool _isDragging;
@@ -59,6 +60,11 @@ namespace RaccoonsGames.Cube
         public void SetColor(Color color)
         {
             View.UpdateColorCube(color);
+        }
+
+        public void PlayBounceEffect()
+        {
+            _rigidbody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
         }
 
         public void ResetImpulse()
